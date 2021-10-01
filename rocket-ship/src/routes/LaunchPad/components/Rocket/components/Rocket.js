@@ -1,4 +1,5 @@
 import React, { useState, Component } from 'react';
+import _isEqual from 'lodash';
 import RocketCore from './RocketCore';
 
 export function FunctionalRocket() {
@@ -14,6 +15,10 @@ export class ClassRocket extends Component {
     this.state = {
       initialLaunchTime: Date.now()
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !_isEqual(nextProps, this.props);
   }
 
   render() {
